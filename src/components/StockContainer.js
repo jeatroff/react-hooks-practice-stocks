@@ -1,11 +1,17 @@
 import React from "react";
 import Stock from "./Stock";
 
-function StockContainer() {
+function StockContainer({ stockList, addToPortfolio, stockFilter }) {
+  const stockListFiltered = stockList.filter((stock) => (
+    stock.type === stockFilter
+  ))
+  
   return (
     <div>
       <h2>Stocks</h2>
-      {/* render stock list here*/}
+      {stockListFiltered.map((stock) => (
+        <Stock key={stock.id} stock={stock} onClick={addToPortfolio}/>
+      ))}
     </div>
   );
 }
